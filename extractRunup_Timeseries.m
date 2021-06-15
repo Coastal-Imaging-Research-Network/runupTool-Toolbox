@@ -85,3 +85,8 @@ if (0)
    end
      
 end
+function D = dironly(directory_name)
+
+D=dir(directory_name); 
+
+D=D(~strncmpi('.',{D.name},1));
