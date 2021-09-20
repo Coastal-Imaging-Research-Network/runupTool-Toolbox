@@ -5,7 +5,7 @@
 %move to the directory where files are located
 
 %add paths for runupTool code (and supporting files)
-addpath runupTool\
+addpath runupTool
 
 %% run the tool
 %example 1

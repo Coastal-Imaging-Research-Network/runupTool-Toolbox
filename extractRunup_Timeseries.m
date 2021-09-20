@@ -27,10 +27,10 @@ clc
 % yrunup=[90]; %[90, 945] = alongshore locations of runup pixel lines/timestacks
 
 %---timestack files located at:
-dataDIR = [pwd,'\data\',num2str(year),'\cx'];
+dataDIR = [pwd,'/data/',num2str(year),'/cx'];
 
 %---save runup timeseries files to:
-saveDIR = [pwd,'\runup\',num2str(year)];%,'\'];
+saveDIR = [pwd,'/runup/',num2str(year)];%,'/'];
 
 %--------------------------------------------------------------------------
 
@@ -39,8 +39,8 @@ monthName=datestr([year,month,day,0,0,0],'mmm');
 dayStr=num2str(day,'%2.2d');
 dirName = [yearday '_' monthName '.' dayStr];
 
-dataPath = [dataDIR '\' dirName ];
-savePath = [saveDIR '\' dirName];
+dataPath = [dataDIR '/' dirName ];
+savePath = [saveDIR '/' dirName];
 if ~exist(savePath)
     mkdir(savePath)
 end
@@ -48,18 +48,18 @@ end
 %---for each alongshore runup location:
 for yy=1:length(yrunup)
     
-    S = dironly([dataPath '\*runup' num2str(yrunup(yy)) '.mat']);
+    S = dironly([dataPath '/*runup' num2str(yrunup(yy)) '.mat']);
     
     for ss=1:length(S)
-        stackFile = [dataPath '\' S(ss).name];
+        stackFile = [dataPath '/' S(ss).name];
         file=parseFilename(stackFile,'noLocal');
         runupFile=[file.time '.' file.when '.' file.station '.c' file.camera '.' file.type '.runup.mat'];
         % runupFile=[file.time '.' file.when '.' file.station '.c' file.camera '.r' num2str(yrunup(yy)) '.runup.mat'];
-        if ~exist([savePath '\' runupFile ])
+        if ~exist([savePath '/' runupFile ])
             
             figure('Name',S(ss).name);
             S(ss).name
-            runupTool([dataPath '\' S(ss).name],savePath)
+            runupTool([dataPath '/' S(ss).name],savePath)
             
             if ss==length(S)
                 keyboard
